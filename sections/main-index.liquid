@@ -1,0 +1,115 @@
+<section class="hero-section">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1>{{ section.settings.heading }}</h1>
+      <div class="hero-text rte">{{ section.settings.text }}</div>
+      <div class="hero-actions">
+        <a class="button button-primary" href="{{ routes.all_products_collection_url }}">Shop Products</a>
+        <a class="button button-secondary" href="{{ routes.cart_url }}">View Cart</a>
+      </div>
+    </div>
+
+    <div class="hero-stage">
+      <div class="hero-banner placeholder-card">
+        {% if section.settings.banner_image != blank %}
+          {{ section.settings.banner_image | image_url: width: 1400 | image_tag: alt: section.settings.heading, class: 'hero-image' }}
+        {% else %}
+          <div class="placeholder-label">Banner Placeholder</div>
+          <p>Add your banner image in the Shopify theme editor later.</p>
+        {% endif %}
+      </div>
+
+      <div class="hero-product-card">
+        <span class="pill">Featured</span>
+        {% assign featured_product = section.settings.featured_product %}
+        {% if featured_product != blank %}
+          {% if featured_product.featured_image != blank %}
+            {{ featured_product.featured_image | image_url: width: 900 | image_tag: alt: featured_product.title, class: 'hero-product-image' }}
+          {% else %}
+            <div class="product-image-placeholder tall"><span>Product Image Placeholder</span></div>
+          {% endif %}
+          <h2>{{ featured_product.title }}</h2>
+          <p>{{ featured_product.description | strip_html | truncatewords: 20 }}</p>
+          <div class="price-row">
+            <span class="price">{{ featured_product.price | money }}</span>
+            {% if featured_product.compare_at_price > featured_product.price %}
+              <span class="old-price">{{ featured_product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+          <a class="button button-primary" href="{{ featured_product.url }}">View Product</a>
+        {% else %}
+          <div class="product-image-placeholder tall"><span>Select a featured product in the theme editor</span></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Featured Products</p>
+      <h2>Health Geeks best sellers</h2>
+      <p>Connect your Shopify products here while keeping the dark premium storefront style.</p>
+    </div>
+
+    <div class="product-grid">
+      {% assign featured_collection = section.settings.collection | default: collections.all %}
+      {% for product in featured_collection.products limit: 4 %}
+        {% render 'product-card', product: product %}
+      {% else %}
+        <div class="empty-state">Add products to your store, then choose a collection in the theme editor.</div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="container section-heading">
+    <p class="eyebrow">Why Customers Switch</p>
+    <h2>Position Health Geeks as the premium choice</h2>
+    <p>Dark, premium styling gives the store a sharper identity while Shopify handles checkout, payments, addresses, and orders.</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main index",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Health Geeks Store"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Science-backed supplements in a bold dark storefront."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>A premium Shopify homepage for Health Geeks with a darker visual direction.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ]
+}
+{% endschema %}

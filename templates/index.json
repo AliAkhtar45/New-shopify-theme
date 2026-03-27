@@ -1,37 +1,15 @@
 {
   "sections": {
-    "hero": {
-      "type": "home-hero",
+    "main": {
+      "type": "main-index",
       "settings": {
         "eyebrow": "Health Geeks Store",
         "heading": "Science-backed supplements in a bold dark storefront.",
-        "text": "A premium Shopify homepage for Health Geeks with a darker visual direction, real product integration, and placeholders you can replace later inside the theme editor.",
-        "primary_label": "Shop Products",
-        "primary_link": "/collections/all",
-        "secondary_label": "Contact Store",
-        "secondary_link": "/pages/contact"
-      }
-    },
-    "featured": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Health Geeks best sellers",
-        "description": "Connect your Shopify products to this section and keep the darker premium theme.",
-        "products_to_show": 4
-      }
-    },
-    "rich_text": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "Why Customers Switch",
-        "heading": "Position Health Geeks as the premium choice",
-        "text": "<p>Dark, premium styling gives the store a sharper identity while Shopify handles checkout, payments, addresses, and orders.</p>"
+        "text": "<p>A premium Shopify homepage for Health Geeks with a darker visual direction, product integration, and placeholders you can replace later inside the theme editor.</p>"
       }
     }
   },
   "order": [
-    "hero",
-    "featured",
-    "rich_text"
+    "main"
   ]
 }
