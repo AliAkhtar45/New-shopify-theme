@@ -102,6 +102,29 @@ p, .rte { color: var(--muted); line-height: 1.75; }
   width: 100%;
   border-radius: 22px;
 }
+.detail-image, .card-product-image, .hero-image, .hero-product-image {
+  display: block;
+  object-fit: cover;
+}
+.hero-image {
+  min-height: 520px;
+  max-height: 520px;
+}
+.hero-product-image {
+  max-height: 300px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.02);
+}
+.card-product-image {
+  max-height: 280px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.02);
+}
+.detail-image {
+  max-height: 540px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.02);
+}
 .placeholder-card, .product-image-placeholder {
   min-height: 280px;
   display: flex;
@@ -175,4 +198,6 @@ p, .rte { color: var(--muted); line-height: 1.75; }
   }
   .site-nav.open { display: flex; }
   .menu-toggle { display: inline-block; }
+  .hero-image { min-height: 360px; max-height: 360px; }
+  .detail-image { max-height: 360px; }
 }
