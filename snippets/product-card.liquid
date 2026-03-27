@@ -1,0 +1,23 @@
+<article class="product-card">
+  <div class="product-media">
+    {% if product.featured_image != blank %}
+      {{ product.featured_image | image_url: width: 900 | image_tag: alt: product.title, class: 'card-product-image' }}
+    {% else %}
+      <div class="product-image-placeholder"><span>Product Image Placeholder</span></div>
+    {% endif %}
+  </div>
+  <div class="product-body">
+    {% if product.compare_at_price > product.price %}
+      <span class="tag">On Sale</span>
+    {% endif %}
+    <h3>{{ product.title }}</h3>
+    <p>{{ product.description | strip_html | truncatewords: 18 }}</p>
+    <div class="price-row">
+      <span class="price">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="old-price">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+    <a class="button button-primary full" href="{{ product.url }}">View Product</a>
+  </div>
+</article>

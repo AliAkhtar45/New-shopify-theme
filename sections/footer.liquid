@@ -1,0 +1,38 @@
+<footer class="site-footer">
+  <div class="container footer-wrap">
+    <div>
+      {% if settings.logo != blank %}
+        {{ settings.logo | image_url: width: 220 | image_tag: alt: shop.name, class: 'footer-logo' }}
+      {% else %}
+        <span class="brand-text">{{ shop.name }}</span>
+      {% endif %}
+      <p class="footer-copy">{{ section.settings.footer_text }}</p>
+    </div>
+    <div class="footer-links">
+      {% if section.settings.menu != blank %}
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer text",
+      "default": "Premium supplements with a bold dark-store identity."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Footer menu"
+    }
+  ]
+}
+{% endschema %}

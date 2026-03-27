@@ -1,0 +1,30 @@
+<section class="section-block">
+  <div class="container detail-grid">
+    <div class="detail-copy">
+      <p class="eyebrow">Contact</p>
+      <h1 class="detail-title">Support, shipping, and order questions</h1>
+      <p class="detail-intro">Use this page for customer service, wholesale enquiries, or general brand contact.</p>
+    </div>
+    <div class="contact-form">
+      {% form 'contact' %}
+        <label class="field-label" for="ContactFormName">Name</label>
+        <input class="field-input" id="ContactFormName" type="text" name="contact[name]" value="{{ form.name }}">
+
+        <label class="field-label" for="ContactFormEmail">Email</label>
+        <input class="field-input" id="ContactFormEmail" type="email" name="contact[email]" value="{{ form.email }}">
+
+        <label class="field-label" for="ContactFormBody">Message</label>
+        <textarea class="field-input" id="ContactFormBody" name="contact[body]" rows="6">{{ form.body }}</textarea>
+
+        <button class="button button-primary" type="submit">Send Message</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "settings": []
+}
+{% endschema %}

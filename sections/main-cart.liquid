@@ -1,0 +1,48 @@
+<section class="section-block">
+  <div class="container cart-page-grid">
+    <div class="cart-page-items">
+      {% if cart.item_count > 0 %}
+        {% form 'cart', cart %}
+          {% for item in cart.items %}
+            <article class="cart-item">
+              <div class="cart-item-copy">
+                <h3>{{ item.product.title }}</h3>
+                <p>{{ item.final_price | money }} each</p>
+              </div>
+              <div class="cart-item-controls">
+                <input class="field-input small-input" type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+              </div>
+            </article>
+          {% endfor %}
+          <div class="cart-actions">
+            <button class="button button-secondary" type="submit" name="update">Update cart</button>
+            <button class="button button-primary" type="submit" name="checkout">Checkout</button>
+          </div>
+        {% endform %}
+      {% else %}
+        <div class="empty-cart">
+          <h3>Your cart is empty</h3>
+          <p>Add products from your store and come back here to checkout.</p>
+        </div>
+      {% endif %}
+    </div>
+    <aside class="cart-page-summary">
+      <h2>Order Summary</h2>
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <strong>{{ cart.total_price | money }}</strong>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <strong>Calculated at checkout</strong>
+      </div>
+    </aside>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main cart",
+  "settings": []
+}
+{% endschema %}

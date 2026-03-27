@@ -1,0 +1,46 @@
+<header class="site-header">
+  <div class="announcement-bar">
+    {{ section.settings.announcement }}
+  </div>
+  <div class="container nav-wrap">
+    <a href="{{ routes.root_url }}" class="brandmark" aria-label="{{ shop.name }}">
+      {% if settings.logo != blank %}
+        {{ settings.logo | image_url: width: 240 | image_tag: alt: shop.name }}
+      {% else %}
+        <span class="brand-text">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open menu" data-menu-toggle>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="site-nav" data-site-nav>
+      {% if section.settings.menu != blank %}
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      {% endif %}
+      <a href="{{ routes.cart_url }}" class="cart-button">Cart ({{ cart.item_count }})</a>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement",
+      "label": "Announcement",
+      "default": "Free UK shipping over £40 | Premium daily supplements | 30-day guarantee"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}
